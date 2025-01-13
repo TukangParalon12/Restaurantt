@@ -30,7 +30,7 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
             Produk
           </a>
           <a
-            href="#"
+            href="profile"
             className="block py-2 px-4 rounded hover:bg-gray-700 transition"
           >
             Profile

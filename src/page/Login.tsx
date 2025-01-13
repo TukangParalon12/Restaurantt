@@ -34,11 +34,22 @@ const Login: React.FC = () => {
               }
             )
             .then((response) => {
-              console.log("Login berhasil:", response.data);
-              // Simpan token ke localStorage
-              localStorage.setItem("token", response.data.token);
+              console.log("Login Page Rendered");
 
-              navigate("/Navbarksr");
+              console.log("Login berhasil:", response.data);
+              const { token, role } = response.data;
+
+              // Simpan token ke localStorage
+              localStorage.setItem("token", token);
+
+              // Arahkan ke dashboard sesuai role
+              if (role === "admin") {
+                navigate("/owner");
+              } else if (role === "kasir") {
+                navigate("/kasir");
+              } else {
+                alert("Peran tidak dikenali. Hubungi admin.");
+              }
             })
             .catch((error) => {
               console.error(
