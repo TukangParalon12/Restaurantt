@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const Login: React.FC = () => {
   const formRef = React.useRef<HTMLFormElement>(null);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -23,7 +23,6 @@ const Login: React.FC = () => {
           const name = target.name.value;
           const password = target.password.value;
 
-          // Kirim data ke backend
           axios
             .post(
               "https://bg8tgnl0-3001.asse.devtunnels.ms/users/login",
@@ -39,7 +38,7 @@ const Login: React.FC = () => {
               // Simpan token ke localStorage
               localStorage.setItem("token", response.data.token);
 
-              // navigate("/layout");
+              navigate("/Navbarksr");
             })
             .catch((error) => {
               console.error(
