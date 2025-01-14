@@ -1,98 +1,50 @@
 import React from "react";
 
-interface NavbarKsrProps {
+interface NavbarOwnProps {
   children: React.ReactNode;
 }
 
-const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
+const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
   return (
-    <div className="flex min-h-screen bg-[#363636] text-white">
+    <div className="flex h-screen text-white">
       {/* Sidebar (Navbar) */}
-      <aside className="w-64 bg-black flex flex-col p-4 ">
-        <h1 className="text-xl font-bold mb-6">The Ivory Plate</h1>
-        <nav className="space-y-6">
+      <aside className="w-48 bg-black flex flex-col p-3">
+        <h1 className="text-lg font-bold mb-4">The Ivory Plate</h1>
+        <nav className="space-y-3">
           {/* Menu Section */}
           <div>
             <h3 className="text-sm font-semibold uppercase mb-2">Menu</h3>
             <ul className="space-y-2">
               <li>
                 <a
-                  href="#"
-                  className="flex items-center space-x-2 py-2 px-4 rounded hover:bg-gray-700 transition"
+                  href="/owner"
+                  className="block py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M3 3h18v18H3z" />
-                  </svg>
-                  <span>Dashboard</span>
+                  Dashboard
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="flex items-center space-x-2 py-2 px-4 rounded hover:bg-gray-700 transition"
+                  className="block py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M16 12h6M8 6h8M4 18h16" />
-                  </svg>
-                  <span>Supplier</span>
+                  Supplier
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="flex items-center space-x-2 py-2 px-4 rounded hover:bg-gray-700 transition"
+                  className="block py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M20 6H4v14h16z" />
-                  </svg>
-                  <span>Produk</span>
+                  Produk
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="flex items-center space-x-2 py-2 px-4 rounded hover:bg-gray-700 transition"
+                  className="block py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M12 20h9m-9-7h9m-9-7h9m-9-7h9" />
-                  </svg>
-                  <span>Karyawan</span>
+                  Karyawan
                 </a>
               </li>
             </ul>
@@ -105,7 +57,7 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
               <li>
                 <a
                   href="#"
-                  className="block py-2 px-4 pl-8 rounded hover:bg-gray-700 transition"
+                  className="block py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
                   Barang Masuk
                 </a>
@@ -113,7 +65,7 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
               <li>
                 <a
                   href="#"
-                  className="block py-2 px-4 pl-8 rounded hover:bg-gray-700 transition"
+                  className="block py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
                   Barang Keluar
                 </a>
@@ -121,7 +73,7 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
               <li>
                 <a
                   href="#"
-                  className="block py-2 px-4 pl-8 rounded hover:bg-gray-700 transition"
+                  className="block py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
                   Jenis Produk
                 </a>
@@ -129,7 +81,7 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
               <li>
                 <a
                   href="#"
-                  className="block py-2 px-4 pl-8 rounded hover:bg-gray-700 transition"
+                  className="block py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
                   History
                 </a>
@@ -141,25 +93,10 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
           <div>
             <h3 className="text-sm font-semibold uppercase mb-2">Profile</h3>
             <a
-              href="#"
-              className="flex items-center space-x-2 py-2 px-4 rounded hover:bg-gray-700 transition"
+              href="owner/profile"
+              className="block py-1 px-3 rounded hover:bg-gray-700 transition"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <path d="M14 14s1.5 1.5 0 3c-1 1-2-1.5-4-1.5-2 0-3 2.5-4 3 0-1.5 0-3 0-3m8-8h.01" />
-              </svg>
-              <span>
-                <a href="profile">Profile</a>
-              </span>
+              Profile
             </a>
           </div>
         </nav>
@@ -168,16 +105,16 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <header className="bg-black p-4 flex justify-between items-center">
-          <h2 className="ml-[850px] text-lg">Today: 18-04-2024</h2>
-          <div className="p-2 rounded-full cursor-pointer">
+        <header className="bg-[#111315] p-3 flex justify-between items-center">
+          <h2 className="text-sm">Today: 18-04-2024</h2>
+          <div className="p-1 rounded-full cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth="2"
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-5 h-5"
             >
               <path
                 strokeLinecap="round"
@@ -189,10 +126,10 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 p-6 bg-[#363636]">{children}</main>
+        <main className="flex-1 p-4 bg-[#363636]">{children}</main>
       </div>
     </div>
   );
 };
 
-export default NavbarKsr;
+export default NavbarOwn;

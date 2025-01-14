@@ -47,6 +47,8 @@ const Login: React.FC = () => {
                 navigate("/owner");
               } else if (role === "kasir") {
                 navigate("/kasir");
+              } else if (role == "gudang") {
+                navigate("/gudang");
               } else {
                 alert("Peran tidak dikenali. Hubungi admin.");
               }

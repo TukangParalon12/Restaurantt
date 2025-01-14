@@ -5,37 +5,35 @@ import NavbarKsr from "./Kasir/navKsr";
 import NavbarOwn from "./Owner/navOwn";
 import DashboardOwn from "./Owner/dashboardOwn";
 import ProfilePage from "./page/Profile";
-
+import Gudang from "./Gudang/dashboardGdg";
+import NavbarGdg from "./Gudang/navGdg";
 export const router = createBrowserRouter([
-  // Login Page
   {
     path: "/",
     element: <Login />, // Halaman Login
   },
 
-  // Kasir Section
   {
-    path: "/kasir", // Route untuk Kasir
+    path: "/kasir",
     element: (
       <NavbarKsr>
-        <Outlet /> {/* Outlet untuk nested routes */}
+        <Outlet />
       </NavbarKsr>
     ),
     children: [
       {
-        index: true, // Halaman default di bawah /kasir
+        index: true,
         element: <Kasir />,
       },
       {
-        path: "profile", // Nested route untuk profile
+        path: "profile",
         element: <ProfilePage />,
       },
     ],
   },
 
-  // Owner Section
   {
-    path: "/owner", // Route untuk Owner
+    path: "/owner",
     element: (
       <NavbarOwn>
         <Outlet />
@@ -43,11 +41,30 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        index: true, // Halaman default di bawah /owner
+        index: true,
         element: <DashboardOwn />,
       },
       {
-        path: "profile", // Nested route untuk profile
+        path: "profile",
+        element: <ProfilePage />,
+      },
+    ],
+  },
+
+  {
+    path: "/gudang",
+    element: (
+      <NavbarGdg>
+        <Outlet />
+      </NavbarGdg>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Gudang />,
+      },
+      {
+        path: "profile",
         element: <ProfilePage />,
       },
     ],

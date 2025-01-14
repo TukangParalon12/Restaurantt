@@ -6,32 +6,32 @@ interface NavbarKsrProps {
 
 const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
   return (
-    <div className="flex min-h-screen bg-[#363636] text-white">
+    <div className="flex h-screen text-white">
       {/* Sidebar (Navbar) */}
-      <aside className="w-64 bg-black flex flex-col p-4">
-        <h1 className="text-2xl font-bold mb-6">The Ivory Plate</h1>
-        <nav className="space-y-4">
+      <aside className="w-48 bg-black flex flex-col p-3">
+        <h1 className="text-lg font-bold mb-4">The Ivory Plate</h1>
+        <nav className="space-y-3">
           <a
-            href="#"
-            className="block py-2 px-4 rounded hover:bg-gray-700 transition"
+            href="/kasir"
+            className="block py-1 px-3 rounded hover:bg-gray-700 transition"
           >
             Dashboard
           </a>
           <a
             href="#"
-            className="block py-2 px-4 rounded hover:bg-gray-700 transition"
+            className="block py-1 px-3 rounded hover:bg-gray-700 transition"
           >
             Mode Kasir
           </a>
           <a
             href="#"
-            className="block py-2 px-4 rounded hover:bg-gray-700 transition"
+            className="block py-1 px-3 rounded hover:bg-gray-700 transition"
           >
             Produk
           </a>
           <a
-            href="profile"
-            className="block py-2 px-4 rounded hover:bg-gray-700 transition"
+            href="/kasir/profile"
+            className="block py-1 px-3 rounded hover:bg-gray-700 transition"
           >
             Profile
           </a>
@@ -41,16 +41,16 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <header className="bg-black p-4 flex justify-between items-center">
-          <h2 className="ml-[850px] text-lg">Today: 18-04-2024</h2>
-          <div className=" p-2 rounded-full cursor-pointer">
+        <header className="bg-[#111315] p-3 flex justify-between items-center">
+          <h2 className="text-sm">Today: 18-04-2024</h2>
+          <div className="p-1 rounded-full cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
-              viewBox="24"
+              viewBox="0 0 24 24"
               strokeWidth="2"
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-5 h-5"
             >
               <path
                 strokeLinecap="round"
@@ -62,7 +62,7 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 p-6 rounded-full bg-[#363636]">
+        <main className="flex-1 p-4 bg-[#363636]">
           {children} {/* Render children di sini */}
         </main>
       </div>
