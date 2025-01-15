@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  VictoryAxis,
-  VictoryBar,
-  VictoryChart,
-  VictoryStack,
-  VictoryTheme,
-} from "victory";
+import GrafikChart from "../component/grafikBln";
 
 const DashboardOwn: React.FC = () => {
   const stats = [
@@ -24,7 +18,7 @@ const DashboardOwn: React.FC = () => {
             className="bg-[#111315] p-6 rounded-lg flex flex-col items-center"
           >
             <h3 className="text-lg font-bold text-white">{stat.label}</h3>
-            <div className="flex-row">
+            <div className="flex felx-row">
               <p className="text-3xl font-bold text-white">{stat.value}</p>
               <p
                 className={`mt-2 text-sm ${
@@ -44,47 +38,8 @@ const DashboardOwn: React.FC = () => {
         {/* Chart Section */}
         <div className="bg-[#111315] p-4 rounded-lg">
           <h3 className="text-lg font-bold mb-4 text-white">Data Penjualan</h3>
-          <div className="h-48 bg-gray-800 rounded-lg flex items-center justify-center">
-            <VictoryChart domainPadding={{ x: 40 }} theme={VictoryTheme.clean}>
-              <VictoryAxis
-                style={{
-                  axis: { stroke: "white" }, // Warna garis sumbu
-                  tickLabels: { fill: "white" }, // Warna label pada tick
-                  axisLabel: { fill: "white" }, // Warna label sumbu
-                }}
-              />
-              <VictoryAxis
-                dependentAxis
-                style={{
-                  axis: { stroke: "white" }, // Warna garis sumbu vertikal
-                  tickLabels: { fill: "white" }, // Warna label angka pada tick
-                  axisLabel: { fill: "white" }, // Warna label sumbu vertikal
-                }}
-              />
-              <VictoryStack>
-                <VictoryBar
-                  data={[
-                    { x: "Sales", y: 2 },
-                    { x: "Marketing", y: 3 },
-                    { x: "Finance", y: 5 },
-                  ]}
-                />
-                <VictoryBar
-                  data={[
-                    { x: "Sales", y: 1 },
-                    { x: "Marketing", y: 4 },
-                    { x: "Finance", y: 5 },
-                  ]}
-                />
-                <VictoryBar
-                  data={[
-                    { x: "Sales", y: 3 },
-                    { x: "Marketing", y: 2 },
-                    { x: "Finance", y: 6 },
-                  ]}
-                />
-              </VictoryStack>
-            </VictoryChart>
+          <div className="h-64 rounded-lg flex items-center justify-center">
+            <GrafikChart />
           </div>
         </div>
 
