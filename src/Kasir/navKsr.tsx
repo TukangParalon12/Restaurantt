@@ -1,4 +1,8 @@
 import React from "react";
+import dsh from "../assets/dashboard.png";
+import prl from "../assets/profile.png";
+import mksr from "../assets/modekasir.png";
+import pdk from "../assets/produk.png";
 
 interface NavbarKsrProps {
   children: React.ReactNode;
@@ -13,27 +17,31 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
         <nav className="space-y-3">
           <a
             href="/kasir"
-            className="block py-1 px-3 rounded hover:bg-gray-700 transition"
+            className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
           >
-            Dashboard
+            <img src={dsh} alt="" />
+            <span>Dashboard</span>
           </a>
           <a
             href="#"
             className="block py-1 px-3 rounded hover:bg-gray-700 transition"
           >
-            Mode Kasir
+            <img src={mksr} alt="" />
+            <span>Mode Kasir</span>
           </a>
           <a
             href="#"
             className="block py-1 px-3 rounded hover:bg-gray-700 transition"
           >
-            Produk
+            <img src={pdk} alt="" />
+            <span>Produk</span>
           </a>
           <a
             href="/kasir/profile"
             className="block py-1 px-3 rounded hover:bg-gray-700 transition"
           >
-            Profile
+            <img src={prl} alt="" />
+            <span>Profile</span>
           </a>
         </nav>
       </aside>

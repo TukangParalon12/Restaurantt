@@ -1,4 +1,10 @@
 import React from "react";
+import dsh from "../assets/dashboard.png";
+import sup from "../assets/supplier.png";
+import pdk from "../assets/produk.png";
+import kar from "../assets/karyawan.png";
+import trs from "../assets/transaksi.png";
+import prl from "../assets/profile.png";
 
 interface NavbarOwnProps {
   children: React.ReactNode;
@@ -18,33 +24,37 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
               <li>
                 <a
                   href="/owner"
-                  className="block py-1 px-3 rounded hover:bg-gray-700 transition"
+                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
-                  Dashboard
+                  <img src={dsh} alt="" />
+                  <span>Dashboard</span>
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="block py-1 px-3 rounded hover:bg-gray-700 transition"
+                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
-                  Supplier
+                  <img src={sup} alt="" />
+                  <span>Supplier</span>
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="block py-1 px-3 rounded hover:bg-gray-700 transition"
+                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
-                  Produk
+                  <img src={pdk} alt="" />
+                  <span> Produk</span>
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="block py-1 px-3 rounded hover:bg-gray-700 transition"
+                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
-                  Karyawan
+                  <img src={kar} alt="" />
+                  <span>Karyawan</span>
                 </a>
               </li>
             </ul>
@@ -57,33 +67,37 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
               <li>
                 <a
                   href="#"
-                  className="block py-1 px-3 rounded hover:bg-gray-700 transition"
+                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
-                  Barang Masuk
+                  <img src={trs} alt="" />
+                  <span>Barang Masuk</span>
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="block py-1 px-3 rounded hover:bg-gray-700 transition"
+                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
-                  Barang Keluar
+                  <img src={trs} alt="" />
+                  <span>Barang Keluar</span>
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="block py-1 px-3 rounded hover:bg-gray-700 transition"
+                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
-                  Jenis Produk
+                  <img src={trs} alt="" />
+                  <span>Jenis Produk</span>
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="block py-1 px-3 rounded hover:bg-gray-700 transition"
+                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
-                  History
+                  <img src={trs} alt="" />
+                  <span>Histori</span>
                 </a>
               </li>
             </ul>
@@ -94,9 +108,10 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
             <h3 className="text-sm font-semibold uppercase mb-2">Profile</h3>
             <a
               href="owner/profile"
-              className="block py-1 px-3 rounded hover:bg-gray-700 transition"
+              className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
             >
-              Profile
+              <img src={prl} alt="" />
+              <span>Profile</span>
             </a>
           </div>
         </nav>

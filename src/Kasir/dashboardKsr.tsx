@@ -1,4 +1,5 @@
 import React from "react";
+import GrafikChart from "../component/grafikBln";
 
 const DashboardKsr: React.FC = () => {
   const stats = [
@@ -36,9 +37,11 @@ const DashboardKsr: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Chart Section */}
         <div className="bg-[#111315] p-4 rounded-lg">
-          <h3 className="text-lg font-bold mb-4 text-white">Data Penjualan</h3>
+          <h3 className="text-lg font-bold mb-4 text-white mb-4">
+            Data Penjualan
+          </h3>
           <div className="h-48 bg-gray-800 rounded-lg flex items-center justify-center">
-            <p className="text-gray-400">Grafik belum tersedia</p>
+            <GrafikChart />
           </div>
         </div>
 

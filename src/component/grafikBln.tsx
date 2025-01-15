@@ -8,10 +8,10 @@ import {
 } from "victory";
 
 const GrafikChart: React.FC = () => {
-  const [selectedYear, setSelectedYear] = useState(2003);
+  const [selectedYear, setSelectedYear] = useState(2024);
 
   const dataByYear: Record<number, { x: string; y: number }[][]> = {
-    2003: [
+    2024: [
       [
         { x: "Jan", y: 3 },
         { x: "Feb", y: 4 },
@@ -55,7 +55,7 @@ const GrafikChart: React.FC = () => {
         { x: "Des", y: 4 },
       ],
     ],
-    2004: [
+    2025: [
       [
         { x: "Jan", y: 4 },
         { x: "Feb", y: 3 },
@@ -112,24 +112,24 @@ const GrafikChart: React.FC = () => {
       >
         <VictoryAxis
           style={{
-            axis: { stroke: "white" },
+            axis: { stroke: "none" },
             tickLabels: { fill: "white", fontSize: 10 },
-            axisLabel: { fill: "white" },
+            axisLabel: { fill: "none" },
             grid: { stroke: "none" },
           }}
         />
         <VictoryAxis
           dependentAxis
           style={{
-            axis: { stroke: "white" },
-            tickLabels: { fill: "white", fontSize: 10 },
-            axisLabel: { fill: "white" },
+            axis: { stroke: "none" },
+            tickLabels: { fill: "none" },
+            axisLabel: { fill: "none" },
             grid: { stroke: "none" },
           }}
         />
-        <VictoryStack colorScale={["#69b3a2", "#40a4dc", "#2779bd"]}>
+        <VictoryStack colorScale={["#067487", "#37CAE4", "#8EDAE8"]}>
           {dataByYear[selectedYear].map((data, index) => (
-            <VictoryBar key={index} data={data} />
+            <VictoryBar key={index} data={data} barWidth={30} />
           ))}
         </VictoryStack>
       </VictoryChart>
@@ -141,7 +141,7 @@ const GrafikChart: React.FC = () => {
             className={`px-4 py-2 rounded-lg text-sm font-semibold ${
               selectedYear === Number(year)
                 ? "bg-white text-black"
-                : "bg-gray-800 text-white"
+                : "bg-[#363636] text-white"
             }`}
           >
             {year}
