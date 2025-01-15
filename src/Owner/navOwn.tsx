@@ -105,7 +105,6 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
 
           {/* Profile Section */}
           <div>
-            <h3 className="text-sm font-semibold uppercase mb-2">Profile</h3>
             <a
               href="owner/profile"
               className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
@@ -121,7 +120,7 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
       <div className="flex-1 flex flex-col">
         {/* Header */}
         <header className="bg-[#111315] p-3 flex justify-between items-center">
-          <h2 className="text-sm">Today: 18-04-2024</h2>
+          <h2 className="text-sm ml-[1000px]">Today: 18-04-2024</h2>
           <div className="p-1 rounded-full cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"

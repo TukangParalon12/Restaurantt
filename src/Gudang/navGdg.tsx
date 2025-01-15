@@ -13,12 +13,12 @@ const NavbarGdg: React.FC<NavbarGdgProps> = ({ children }) => {
   return (
     <div className="flex h-screen text-white">
       {/* Sidebar (Navbar) */}
-      <aside className="w-48 bg-black flex flex-col p-3">
+      <aside className="w-48 bg-black flex flex-col p-4">
         <h1 className="text-lg font-bold mb-4">The Ivory Plate</h1>
-        <nav className="space-y-4">
+        <nav className="space-y-10">
           {/* Menu Section */}
           <div>
-            <h3 className="text-sm font-semibold uppercase mb-2">Menu</h3>
+            <h3 className="text-sm font-bold uppercase mb-2">Menu</h3>
             <ul className="space-y-3">
               <li>
                 <a
@@ -52,7 +52,7 @@ const NavbarGdg: React.FC<NavbarGdgProps> = ({ children }) => {
 
           {/* Transaksi Section */}
           <div>
-            <h3 className="text-sm font-semibold uppercase mb-2">Transaksi</h3>
+            <h3 className="text-sm font-bold uppercase mb-2">Transaksi</h3>
             <ul className="space-y-3">
               <li>
                 <a
@@ -101,7 +101,7 @@ const NavbarGdg: React.FC<NavbarGdgProps> = ({ children }) => {
       <div className="flex-1 flex flex-col">
         {/* Header */}
         <header className="bg-[#111315] p-3 flex justify-between items-center">
-          <h2 className="text-sm">Today: 18-04-2024</h2>
+          <h2 className="text-sm ml-[1000px]">Today: 18-04-2024</h2>
           <div className="p-1 rounded-full cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -8,53 +8,10 @@ import {
 } from "victory";
 
 const GrafikChart: React.FC = () => {
-  const [selectedYear, setSelectedYear] = useState(2024);
+  const [selectedYear, setSelectedYear] = useState(2025);
 
   const dataByYear: Record<number, { x: string; y: number }[][]> = {
-    2024: [
-      [
-        { x: "Jan", y: 3 },
-        { x: "Feb", y: 4 },
-        { x: "Mar", y: 2 },
-        { x: "Apr", y: 5 },
-        { x: "Mei", y: 3 },
-        { x: "Jun", y: 3 },
-        { x: "Jul", y: 4 },
-        { x: "Ags", y: 2 },
-        { x: "Sep", y: 5 },
-        { x: "Okt", y: 3 },
-        { x: "Nov", y: 5 },
-        { x: "Des", y: 3 },
-      ],
-      [
-        { x: "Jan", y: 2 },
-        { x: "Feb", y: 3 },
-        { x: "Mar", y: 4 },
-        { x: "Apr", y: 3 },
-        { x: "Mei", y: 4 },
-        { x: "Jun", y: 2 },
-        { x: "Jul", y: 3 },
-        { x: "Ags", y: 4 },
-        { x: "Sep", y: 3 },
-        { x: "Okt", y: 4 },
-        { x: "Nov", y: 3 },
-        { x: "Des", y: 4 },
-      ],
-      [
-        { x: "Jan", y: 4 },
-        { x: "Feb", y: 2 },
-        { x: "Mar", y: 5 },
-        { x: "Apr", y: 4 },
-        { x: "Mei", y: 3 },
-        { x: "Jun", y: 2 },
-        { x: "Jul", y: 3 },
-        { x: "Ags", y: 4 },
-        { x: "Sep", y: 3 },
-        { x: "Okt", y: 4 },
-        { x: "Nov", y: 3 },
-        { x: "Des", y: 4 },
-      ],
-    ],
+    2024: [[], [], []],
     2025: [
       [
         { x: "Jan", y: 4 },
@@ -141,7 +98,7 @@ const GrafikChart: React.FC = () => {
             className={`px-4 py-2 rounded-lg text-sm font-semibold ${
               selectedYear === Number(year)
                 ? "bg-white text-black"
-                : "bg-[#363636] text-white"
+                : "bg-gray-800 text-white"
             }`}
           >
             {year}
