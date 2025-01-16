@@ -60,14 +60,18 @@ const Login: React.FC = () => {
               );
 
               // Cek apakah error karena nama atau password salah
-              if (error.response?.data?.error === "name or password failed") {
-                alert("Nama atau kata sandi Anda salah.");
-              } else {
-                alert(
-                  error.response?.data?.message ||
-                    "Terjadi kesalahan saat login."
-                );
-              }
+              .catch((error) => {
+                console.error("Login gagal:", error.response?.data || error.message);
+              
+                if (error.response?.data?.error === "name or password failed") {
+                  alert("Nama atau kata sandi Anda salah.");
+                } else {
+                  alert(
+                    error.response?.data?.message || "Terjadi kesalahan saat login."
+                  );
+                }
+              });
+              
             });
         }}
       >
