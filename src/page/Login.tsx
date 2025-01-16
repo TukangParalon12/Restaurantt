@@ -47,7 +47,7 @@ const Login: React.FC = () => {
                 navigate("/owner");
               } else if (role === "kasir") {
                 navigate("/kasir");
-              } else if (role == "gudang") {
+              } else if (role === "gudang") {
                 navigate("/gudang");
               } else {
                 alert("Peran tidak dikenali. Hubungi admin.");
@@ -58,7 +58,17 @@ const Login: React.FC = () => {
                 "Login gagal:",
                 error.response?.data || error.message
               );
-              alert(error.response?.data?.message || "Terjadi kesalahan");
+
+              // Cek apakah error karena nama atau password salah
+              if (
+                error.response?.data?.message === "Invalid username or password"
+              ) {
+                alert("Nama atau kata sandi Anda salah.");
+              } else {
+                alert(
+                  error.response?.data?.message || "Terjadi kesalahan saat login."
+                );
+              }
             });
         }}
       >
