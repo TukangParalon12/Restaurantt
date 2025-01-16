@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const ProfilePage: React.FC = () => {
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [, setError] = useState("");
+  const [, setLoading] = useState(true);
   const [userData, setUserData] = useState({
     name: "",
     id: "",

@@ -59,7 +59,7 @@ const Login: React.FC = () => {
 
               // Cek apakah error karena nama atau password salah
               if (error.response?.data?.error === "password failed") {
-                alert("Nama atau kata sandi Anda salah.");
+                alert("Kata sandi Anda salah.");
               } else {
                 alert(
                   error.response?.data?.message ||

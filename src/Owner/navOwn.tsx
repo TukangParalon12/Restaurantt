@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import dsh from "../assets/dashboard.png";
 import sup from "../assets/supplier.png";
 import pdk from "../assets/produk.png";
@@ -11,12 +12,18 @@ interface NavbarOwnProps {
 }
 
 const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
+  const location = useLocation();
+
+  // Tentukan background berdasarkan lokasi
+  const mainBgClass =
+    location.pathname === "/owner" ? "bg-[#363636]" : "bg-[#111315]";
+
   return (
-    <div className="flex h-screen text-white">
+    <div className="flex min-h-screen text-white">
       {/* Sidebar (Navbar) */}
       <aside className="w-48 bg-black flex flex-col p-3">
         <h1 className="text-lg font-bold mb-4">The Ivory Plate</h1>
-        <nav className="space-y-3">
+        <nav className="space-y-3 sticky">
           {/* Menu Section */}
           <div>
             <h3 className="text-sm font-semibold uppercase mb-2">Menu</h3>
@@ -41,7 +48,7 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="produk"
                   className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
                   <img src={pdk} alt="" />
@@ -140,7 +147,7 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 p-4 bg-[#363636]">{children}</main>
+        <main className={`flex-1 p-4 ${mainBgClass}`}>{children}</main>
       </div>
     </div>
   );

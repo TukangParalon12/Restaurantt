@@ -5,8 +5,10 @@ import NavbarKsr from "./Kasir/navKsr";
 import NavbarOwn from "./Owner/navOwn";
 import DashboardOwn from "./Owner/dashboardOwn";
 import ProfilePage from "./page/Profile";
+import ProdukPage from "./page/produk";
 import Gudang from "./Gudang/dashboardGdg";
 import NavbarGdg from "./Gudang/navGdg";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -47,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path: "profile",
         element: <ProfilePage />,
+      },
+      {
+        path: "produk",
+        element: <ProdukPage />,
       },
     ],
   },

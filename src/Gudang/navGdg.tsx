@@ -11,7 +11,7 @@ interface NavbarGdgProps {
 
 const NavbarGdg: React.FC<NavbarGdgProps> = ({ children }) => {
   return (
-    <div className="flex h-screen text-white">
+    <div className="flex min-h-screen text-white">
       {/* Sidebar (Navbar) */}
       <aside className="w-48 bg-black flex flex-col p-4">
         <h1 className="text-lg font-bold mb-4">The Ivory Plate</h1>
