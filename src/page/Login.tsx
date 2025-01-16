@@ -34,8 +34,6 @@ const Login: React.FC = () => {
               }
             )
             .then((response) => {
-              console.log("Login Page Rendered");
-
               console.log("Login berhasil:", response.data);
               const { token, role } = response.data;
 
@@ -59,7 +57,8 @@ const Login: React.FC = () => {
                 error.response?.data || error.message
               );
 
-              if (error.response?.data?.error === "name or password failed") {
+              // Cek apakah error karena nama atau password salah
+              if (error.response?.data?.error === "password failed") {
                 alert("Nama atau kata sandi Anda salah.");
               } else {
                 alert(
