@@ -55,7 +55,7 @@ const ProductPage: React.FC = () => {
       ) : (
         // Tampilkan produk jika ada
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
-          {products.map((product, indedx) => (
+          {products.map((product, index) => (
             <div
               key={index}
               className="bg-[#1c1c1c] rounded-lg overflow-hidden text-center p-4"
