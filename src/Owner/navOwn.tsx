@@ -48,7 +48,7 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
               </li>
               <li>
                 <a
-                  href="produk"
+                  href="/owner/produk"
                   className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
                   <img src={pdk} alt="" />
@@ -113,7 +113,7 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
           {/* Profile Section */}
           <div>
             <a
-              href="owner/profile"
+              href="/owner/profile"
               className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
             >
               <img src={prl} alt="" />

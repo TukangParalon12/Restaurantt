@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: "/owner",
+    path: "owner",
     element: (
       <NavbarOwn>
         <Outlet />
