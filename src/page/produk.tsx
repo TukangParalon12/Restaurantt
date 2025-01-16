@@ -3,9 +3,9 @@ import axios from "axios";
 import { FaCog, FaPlus } from "react-icons/fa";
 
 interface Product {
-  name: string;
+  title: string;
   stock: number;
-  imageUrl: string;
+  img_product: string;
 }
 
 const ProductPage: React.FC = () => {
@@ -61,11 +61,11 @@ const ProductPage: React.FC = () => {
               className="bg-[#1c1c1c] rounded-lg overflow-hidden text-center p-4"
             >
               <img
-                src={product.imageUrl || "https://via.placeholder.com/150"}
-                alt={product.name}
+                src={product.img_product}
+                alt={product.title}
                 className="w-full h-32 object-cover mb-4 rounded-md"
               />
-              <h2 className="text-lg font-semibold mb-2">{product.name}</h2>
+              <h2 className="text-lg font-semibold mb-2">{product.title}</h2>
               <p className="text-gray-400">Stock: {product.stock}</p>
             </div>
           ))}
