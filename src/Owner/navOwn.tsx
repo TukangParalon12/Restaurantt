@@ -21,7 +21,7 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
   return (
     <div className="flex min-h-screen text-white">
       {/* Sidebar (Navbar) */}
-      <aside className="w-48 bg-black flex flex-col p-3">
+      <aside className=" w-48 bg-black flex flex-col p-3">
         <h1 className="text-lg font-bold mb-4">The Ivory Plate</h1>
         <nav className="space-y-3 sticky">
           {/* Menu Section */}

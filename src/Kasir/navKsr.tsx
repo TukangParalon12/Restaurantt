@@ -30,7 +30,7 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
             <span>Mode Kasir</span>
           </a>
           <a
-            href="#"
+            href="/kasir/produk"
             className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
           >
             <img src={pdk} alt="" />
