@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import dsh from "../assets/dashboard.png";
 import prl from "../assets/profile.png";
 import mksr from "../assets/modekasir.png";
@@ -9,40 +10,62 @@ interface NavbarKsrProps {
 }
 
 const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
+  const location = useLocation();
+
+  // Tentukan background berdasarkan lokasi
+  const mainBgClass =
+    location.pathname === "/kasir" ? "bg-[#363636]" : "bg-[#111315]";
+
   return (
     <div className="flex min-h-screen text-white">
       {/* Sidebar (Navbar) */}
       <aside className="w-48 bg-black flex flex-col p-3">
         <h1 className="text-lg font-bold mb-4">The Ivory Plate</h1>
-        <nav className="space-y-6">
-          <a
-            href="/kasir"
-            className="flex mt-5 items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
-          >
-            <img src={dsh} alt="" />
-            <span>Dashboard</span>
-          </a>
-          <a
-            href="#"
-            className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
-          >
-            <img src={mksr} alt="" />
-            <span>Mode Kasir</span>
-          </a>
-          <a
-            href="/kasir/produk"
-            className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
-          >
-            <img src={pdk} alt="" />
-            <span>Produk</span>
-          </a>
-          <a
-            href="/kasir/profile"
-            className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
-          >
-            <img src={prl} alt="" />
-            <span>Profile</span>
-          </a>
+        <nav className="space-y-3">
+          {/* Menu Section */}
+          <div>
+            <h3 className="text-sm font-semibold uppercase mb-2">Menu</h3>
+            <ul className="space-y-2">
+              <li>
+                <a
+                  href="/kasir"
+                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
+                >
+                  <img src={dsh} alt="" />
+                  <span>Dashboard</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
+                >
+                  <img src={mksr} alt="" />
+                  <span>Mode Kasir</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/kasir/produk"
+                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
+                >
+                  <img src={pdk} alt="" />
+                  <span>Produk</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Profile Section */}
+          <div>
+            <a
+              href="/kasir/profile"
+              className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
+            >
+              <img src={prl} alt="" />
+              <span>Profile</span>
+            </a>
+          </div>
         </nav>
       </aside>
 
@@ -50,7 +73,7 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
       <div className="flex-1 flex flex-col">
         {/* Header */}
         <header className="bg-[#111315] p-3 flex justify-between items-center">
-          <h2 className="text-sm ml-[1000px]">Today: 18-04-2024</h2>
+          <h2 className="text-md ml-[950px]">Today: 18-04-2024</h2>
           <div className="p-1 rounded-full cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -70,9 +93,7 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 p-4 bg-[#363636]">
-          {children} {/* Render children di sini */}
-        </main>
+        <main className={`flex-1 p-4 ${mainBgClass}`}>{children}</main>
       </div>
     </div>
   );

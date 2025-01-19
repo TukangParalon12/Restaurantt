@@ -127,7 +127,7 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
       <div className="flex-1 flex flex-col">
         {/* Header */}
         <header className="bg-[#111315] p-3 flex justify-between items-center">
-          <h2 className="text-sm ml-[1000px]">Today: 18-04-2024</h2>
+          <h2 className="text-md ml-[950px]">Today: 18-04-2024</h2>
           <div className="p-1 rounded-full cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
