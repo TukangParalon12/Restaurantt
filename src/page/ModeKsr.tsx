@@ -5,7 +5,7 @@ import ProdukMdKsr from "../component/ProdukMdKsr";
 
 interface Product {
   title: string;
-  price: string; // Tetap sebagai string
+  price: string;
   img_product: string;
   rating: number;
   quantity: number;
@@ -13,7 +13,7 @@ interface Product {
 
 interface APIProduct {
   title: string;
-  price: number; // Dari backend berupa number
+  price: number;
   img_product: string;
 }
 
@@ -91,6 +91,40 @@ const ProductListPage: React.FC = () => {
   const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  // Mengirim data transaksi ke backend saat klik beli
+  const handleBuy = async () => {
+    const details = products
+      .filter((product) => product.quantity > 0)
+      .map((product) => ({
+        product: product.title,
+        prince: product.price,
+        qty: product.quantity,
+        id_category: 1, // Tentukan kategori jika diperlukan
+      }));
+
+    const transactionData = {
+      no_meja: "1", // Gantilah dengan nomor meja yang sesuai
+      id_kasir: "Kasir1", // Gantilah dengan ID kasir yang sesuai
+      id_payment_method: 1, // ID metode pembayaran (misalnya 1 untuk tunai)
+      total_pembelian: total,
+      nominal_pembeyaran: tunai,
+      nominal_pengembalian: kembalian,
+      details,
+    };
+
+    try {
+      const response = await axios.post(
+        "https://bg8tgnl0-3001.asse.devtunnels.ms/transaksi",
+        transactionData
+      );
+      console.log("Transaction created successfully:", response.data);
+      alert("Transaksi berhasil!");
+    } catch (error) {
+      console.error("Failed to create transaction:", error);
+      alert("Transaksi gagal.");
+    }
+  };
 
   return (
     <div className="flex min-h-screen bg-[#111315] text-white">
@@ -201,7 +235,10 @@ const ProductListPage: React.FC = () => {
           </div>
         )}
 
-        <button className="w-full bg-[#005A80] py-2 mt-6 rounded-md text-white font-semibold hover:bg-[#004e70] text-sm">
+        <button
+          onClick={handleBuy}
+          className="w-full bg-[#005A80] py-2 mt-6 rounded-md text-white font-semibold hover:bg-[#004e70] text-sm"
+        >
           Beli
         </button>
       </aside>
