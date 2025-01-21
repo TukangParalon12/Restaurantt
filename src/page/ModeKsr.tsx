@@ -19,6 +19,7 @@ interface APIProduct {
 
 const ProductListPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>(""); // State untuk query pencarian
   const [tunai, setTunai] = useState<number>(0); // State untuk menyimpan input tunai
   const [kembalian, setKembalian] = useState<number>(0); // State untuk menyimpan kembalian
 
@@ -86,6 +87,11 @@ const ProductListPage: React.FC = () => {
     setKembalian(enteredTunai >= total ? enteredTunai - total : 0);
   };
 
+  // Menyaring produk berdasarkan query pencarian
+  const filteredProducts = products.filter((product) =>
+    product.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="flex min-h-screen bg-[#111315] text-white">
       {/* Sidebar */}
@@ -109,24 +115,32 @@ const ProductListPage: React.FC = () => {
             type="text"
             placeholder="Search..."
             className="bg-[#1E1E1E] h-[40px] p-3 rounded-full text-sm text-white outline-white focus:ring-2 focus:ring-[#005A80] w-1/2"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)} // Menangani perubahan input pencarian
           />
         </header>
 
         {/* Product List */}
         <div className="space-y-4">
-          {products.map((product, index) => (
-            <ProdukMdKsr
-              key={index}
-              title={product.title}
-              price={product.price}
-              rating={product.rating}
-              quantity={product.quantity}
-              img_product={product.img_product}
-              onIncrease={() => handleIncrease(index)}
-              onDecrease={() => handleDecrease(index)}
-              onAddToCart={() => handleAddToCart(index)}
-            />
-          ))}
+          {filteredProducts.length === 0 ? (
+            <div className="text-center text-gray-400">
+              Produk tidak ditemukan
+            </div>
+          ) : (
+            filteredProducts.map((product, index) => (
+              <ProdukMdKsr
+                key={index}
+                title={product.title}
+                price={product.price}
+                rating={product.rating}
+                quantity={product.quantity}
+                img_product={product.img_product}
+                onIncrease={() => handleIncrease(index)}
+                onDecrease={() => handleDecrease(index)}
+                onAddToCart={() => handleAddToCart(index)}
+              />
+            ))
+          )}
         </div>
       </div>
 
@@ -170,23 +184,23 @@ const ProductListPage: React.FC = () => {
               placeholder="Masukkan Nominal"
             />
           </div>
-
-          {/* Garis Pemisah antara Kembalian dan Button Beli */}
-          <hr className="my-4 border-gray-700" />
-
           <textarea
             placeholder="Tambahkan Catatan"
             className="bg-gray-800 w-full mt-4 p-3 rounded-md text-sm text-gray-300 resize-none"
           ></textarea>
-
-          {/* Menampilkan Kembalian */}
-          {tunai >= total && (
-            <div className="flex justify-between text-sm font-semibold">
-              <span>Kembalian</span>
-              <span>IDR {kembalian.toLocaleString()}</span>
-            </div>
-          )}
         </div>
+
+        {/* Garis Pemisah antara Kembalian dan Button Beli */}
+        <hr className="my-4 border-gray-700" />
+
+        {/* Menampilkan Kembalian */}
+        {tunai >= total && (
+          <div className="flex justify-between text-sm font-semibold">
+            <span>Kembalian</span>
+            <span>IDR {kembalian.toLocaleString()}</span>
+          </div>
+        )}
+
         <button className="w-full bg-[#005A80] py-2 mt-6 rounded-md text-white font-semibold hover:bg-[#004e70] text-sm">
           Beli
         </button>
