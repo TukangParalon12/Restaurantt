@@ -21,17 +21,17 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
   return (
     <div className="flex min-h-screen text-white">
       {/* Sidebar (Navbar) */}
-      <aside className=" w-48 bg-black flex flex-col p-3">
-        <h1 className="text-lg font-bold mb-4">The Ivory Plate</h1>
-        <nav className="space-y-3 sticky">
+      <aside className="w-48 bg-black flex flex-col p-4 fixed top-0 left-0 h-full z-40">
+        <h1 className="text-xl font-bold mb-6">The Ivory Plate</h1>
+        <nav className="space-y-8">
           {/* Menu Section */}
-          <div>
+          <div className="mb-4">
             <h3 className="text-sm font-semibold uppercase mb-2">Menu</h3>
             <ul className="space-y-2">
               <li>
                 <a
                   href="/owner"
-                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
+                  className="flex items-center space-x-2 py-1.5 px-2 rounded hover:bg-gray-700 transition"
                 >
                   <img src={dsh} alt="" />
                   <span>Dashboard</span>
@@ -40,7 +40,7 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
               <li>
                 <a
                   href="#"
-                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
+                  className="flex items-center space-x-2 py-1.5 px-2 rounded hover:bg-gray-700 transition"
                 >
                   <img src={sup} alt="" />
                   <span>Supplier</span>
@@ -49,16 +49,16 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
               <li>
                 <a
                   href="/owner/produk"
-                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
+                  className="flex items-center space-x-2 py-1.5 px-2 rounded hover:bg-gray-700 transition"
                 >
                   <img src={pdk} alt="" />
-                  <span> Produk</span>
+                  <span>Produk</span>
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
+                  className="flex items-center space-x-2 py-1.5 px-2 rounded hover:bg-gray-700 transition"
                 >
                   <img src={kar} alt="" />
                   <span>Karyawan</span>
@@ -68,13 +68,13 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
           </div>
 
           {/* Transaksi Section */}
-          <div>
+          <div className="mb-4">
             <h3 className="text-sm font-semibold uppercase mb-2">Transaksi</h3>
             <ul className="space-y-2">
               <li>
                 <a
                   href="#"
-                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
+                  className="flex items-center space-x-2 py-1.5 px-2 rounded hover:bg-gray-700 transition"
                 >
                   <img src={trs} alt="" />
                   <span>Barang Masuk</span>
@@ -83,7 +83,7 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
               <li>
                 <a
                   href="#"
-                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
+                  className="flex items-center space-x-2 py-1.5 px-2 rounded hover:bg-gray-700 transition"
                 >
                   <img src={trs} alt="" />
                   <span>Barang Keluar</span>
@@ -92,7 +92,7 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
               <li>
                 <a
                   href="#"
-                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
+                  className="flex items-center space-x-2 py-1.5 px-2 rounded hover:bg-gray-700 transition"
                 >
                   <img src={trs} alt="" />
                   <span>Jenis Produk</span>
@@ -101,7 +101,7 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
               <li>
                 <a
                   href="#"
-                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
+                  className="flex items-center space-x-2 py-1.5 px-2 rounded hover:bg-gray-700 transition"
                 >
                   <img src={trs} alt="" />
                   <span>Histori</span>
@@ -114,7 +114,7 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
           <div>
             <a
               href="/owner/profile"
-              className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
+              className="flex items-center space-x-2 py-1.5 px-2 rounded hover:bg-gray-700 transition"
             >
               <img src={prl} alt="" />
               <span>Profile</span>
@@ -124,10 +124,10 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
       </aside>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col ml-48">
         {/* Header */}
-        <header className="bg-[#111315] p-3 flex justify-between items-center">
-          <h2 className="text-md ml-[950px]">Today: 18-04-2024</h2>
+        <header className="fixed top-0 left-48 right-0 bg-[#111315] p-3 flex justify-between items-center z-50">
+          <h2 className="ml-[950px] text-md">Today: 18-04-2024</h2>
           <div className="p-1 rounded-full cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -147,7 +147,7 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
         </header>
 
         {/* Main Content */}
-        <main className={`flex-1 p-4 ${mainBgClass}`}>{children}</main>
+        <main className={`flex-1 p-4 mt-12 ${mainBgClass}`}>{children}</main>
       </div>
     </div>
   );

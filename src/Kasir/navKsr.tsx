@@ -19,37 +19,37 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
   return (
     <div className="flex min-h-screen text-white">
       {/* Sidebar (Navbar) */}
-      <aside className="w-48 bg-black flex flex-col p-3">
-        <h1 className="text-lg font-bold mb-4">The Ivory Plate</h1>
-        <nav className="space-y-3">
+      <aside className="w-48 bg-black flex flex-col p-4 fixed top-0 left-0 h-full z-40">
+        <h1 className="text-xl font-bold mb-6">The Ivory Plate</h1>
+        <nav className="space-y-6">
           {/* Menu Section */}
           <div>
-            <h3 className="text-sm font-semibold uppercase mb-2">Menu</h3>
-            <ul className="space-y-2">
+            <h3 className="text-sm font-semibold uppercase mb-3">Menu</h3>
+            <ul className="space-y-3">
               <li>
                 <a
                   href="/kasir"
-                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
+                  className="flex items-center space-x-2 py-2 px-3 rounded hover:bg-gray-700 transition"
                 >
-                  <img src={dsh} alt="" />
+                  <img src={dsh} alt="" className="w-6 h-6" />
                   <span>Dashboard</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="#"
-                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
+                  href="/modekasir"
+                  className="flex items-center space-x-2 py-2 px-3 rounded hover:bg-gray-700 transition"
                 >
-                  <img src={mksr} alt="" />
+                  <img src={mksr} alt="" className="w-6 h-6" />
                   <span>Mode Kasir</span>
                 </a>
               </li>
               <li>
                 <a
                   href="/kasir/produk"
-                  className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
+                  className="flex items-center space-x-2 py-2 px-3 rounded hover:bg-gray-700 transition"
                 >
-                  <img src={pdk} alt="" />
+                  <img src={pdk} alt="" className="w-6 h-6" />
                   <span>Produk</span>
                 </a>
               </li>
@@ -60,9 +60,9 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
           <div>
             <a
               href="/kasir/profile"
-              className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
+              className="flex items-center space-x-2 py-2 px-3 rounded hover:bg-gray-700 transition"
             >
-              <img src={prl} alt="" />
+              <img src={prl} alt="" className="w-6 h-6" />
               <span>Profile</span>
             </a>
           </div>
@@ -70,10 +70,10 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
       </aside>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col ml-48">
         {/* Header */}
-        <header className="bg-[#111315] p-3 flex justify-between items-center">
-          <h2 className="text-md ml-[950px]">Today: 18-04-2024</h2>
+        <header className="bg-[#111315] p-3 flex justify-between items-center fixed top-0 left-48 right-0 z-50">
+          <h2 className="ml-[950px] text-md ">Today: 18-04-2024</h2>
           <div className="p-1 rounded-full cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +81,7 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
               viewBox="0 0 24 24"
               strokeWidth="2"
               stroke="currentColor"
-              className="w-5 h-5"
+              className="w-6 h-6"
             >
               <path
                 strokeLinecap="round"
@@ -93,7 +93,7 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
         </header>
 
         {/* Main Content */}
-        <main className={`flex-1 p-4 ${mainBgClass}`}>{children}</main>
+        <main className={`flex-1 p-4 mt-12 ${mainBgClass}`}>{children}</main>
       </div>
     </div>
   );

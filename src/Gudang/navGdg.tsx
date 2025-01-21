@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import dsh from "../assets/dashboard.png";
 import prl from "../assets/profile.png";
 import sup from "../assets/supplier.png";
@@ -10,11 +11,17 @@ interface NavbarGdgProps {
 }
 
 const NavbarGdg: React.FC<NavbarGdgProps> = ({ children }) => {
+  const location = useLocation();
+
+  // Tentukan background berdasarkan lokasi
+  const mainBgClass =
+    location.pathname === "/gudang" ? "bg-[#363636]" : "bg-[#111315]";
+
   return (
     <div className="flex min-h-screen text-white">
       {/* Sidebar (Navbar) */}
-      <aside className="w-48 bg-black flex flex-col p-4">
-        <h1 className="text-lg font-bold mb-4">The Ivory Plate</h1>
+      <aside className="w-48 bg-black flex flex-col p-4 fixed top-0 left-0 h-full z-40">
+        <h1 className="text-xl font-bold mb-8">The Ivory Plate</h1>
         <nav className="space-y-10">
           {/* Menu Section */}
           <div>
@@ -98,10 +105,10 @@ const NavbarGdg: React.FC<NavbarGdgProps> = ({ children }) => {
       </aside>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col ml-48">
         {/* Header */}
-        <header className="bg-[#111315] p-3 flex justify-between items-center">
-          <h2 className="text-md ml-[950px]">Today: 18-04-2024</h2>
+        <header className="bg-[#111315] p-3 flex justify-between items-center fixed top-0 left-48 right-0 z-50">
+          <h2 className="ml-[950px] text-md">Today: 18-04-2024</h2>
           <div className="p-1 rounded-full cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +128,7 @@ const NavbarGdg: React.FC<NavbarGdgProps> = ({ children }) => {
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 p-4 bg-[#363636]">{children}</main>
+        <main className={`flex-1 p-4 mt-12 ${mainBgClass}`}>{children}</main>
       </div>
     </div>
   );

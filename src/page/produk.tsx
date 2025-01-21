@@ -127,7 +127,7 @@ const ProductPage: React.FC = () => {
                     "https://via.placeholder.com/150"; // Gambar fallback jika gagal
                 }}
               />
-              <h2 className="text-xl font-semibold mb-2">{product.title}</h2>
+              <h2 className="text-xl font-semibold mb-1">{product.title}</h2>
               <p className="text-gray-400 text-md">Stock: {product.stock}</p>
             </div>
           ))}

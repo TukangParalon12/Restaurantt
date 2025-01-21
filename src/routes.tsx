@@ -8,6 +8,7 @@ import ProfilePage from "./page/Profile";
 import ProdukPage from "./page/produk";
 import Gudang from "./Gudang/dashboardGdg";
 import NavbarGdg from "./Gudang/navGdg";
+import MdKsr from "./page/ModeKsr";
 
 export const router = createBrowserRouter([
   {
@@ -78,5 +79,9 @@ export const router = createBrowserRouter([
         element: <ProfilePage />,
       },
     ],
+  },
+  {
+    path: "/modekasir",
+    element: <MdKsr />,
   },
 ]);
