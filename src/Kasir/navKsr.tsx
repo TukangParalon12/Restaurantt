@@ -4,6 +4,7 @@ import dsh from "../assets/dashboard.png";
 import prl from "../assets/profile.png";
 import mksr from "../assets/modekasir.png";
 import pdk from "../assets/produk.png";
+import trs from "../assets/transaksi.png";
 
 interface NavbarKsrProps {
   children: React.ReactNode;
@@ -51,6 +52,17 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
                 >
                   <img src={pdk} alt="" className="w-6 h-6" />
                   <span>Produk</span>
+                </a>
+              </li>{" "}
+              <li className="ml-4">
+                {" "}
+                {/* Menambahkan margin left untuk indentasi */}
+                <a
+                  href="#"
+                  className="flex items-center space-x-2 py-1.5 px-2 rounded hover:bg-gray-700 transition w-8 h-8"
+                >
+                  <img src={trs} alt="" />
+                  <span className="text-md">Histori</span>
                 </a>
               </li>
             </ul>
