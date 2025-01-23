@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaArrowLeft } from "react-icons/fa";
 import ProdukMdKsr from "../component/ProdukMdKsr";
+import Tagihan from "../component/Tagihan";
 
 interface Product {
   title: string;
@@ -22,7 +23,9 @@ const ProductListPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>(""); // State untuk query pencarian
   const [tunai, setTunai] = useState<number>(0); // State untuk menyimpan input tunai
   const [kembalian, setKembalian] = useState<number>(0); // State untuk menyimpan kembalian
+  const [idMeja, setIdMeja] = useState<string>(""); // State untuk ID meja
 
+  // Fetch product data
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -72,7 +75,6 @@ const ProductListPage: React.FC = () => {
     console.log(`Added ${product.title} to cart`);
   };
 
-  // Menghitung Total harga produk dengan quantity lebih dari 0
   const total = products
     .filter((product) => product.quantity > 0)
     .reduce((total, product) => {
@@ -80,32 +82,37 @@ const ProductListPage: React.FC = () => {
       return total + price * product.quantity;
     }, 0);
 
-  // Menghitung kembalian jika tunai lebih besar atau sama dengan total
   const handleTunaiChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const enteredTunai = parseFloat(event.target.value);
     setTunai(enteredTunai);
     setKembalian(enteredTunai >= total ? enteredTunai - total : 0);
   };
 
-  // Menyaring produk berdasarkan query pencarian
   const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Mengirim data transaksi ke backend saat klik beli
   const handleBuy = async () => {
+    if (!idMeja) {
+      alert("ID Meja belum diisi.");
+      return;
+    }
+
+    if (tunai < total) {
+      alert("Uang tunai tidak cukup.");
+      return;
+    }
     const details = products
       .filter((product) => product.quantity > 0)
       .map((product) => ({
         product: product.title,
-        prince: product.price,
+        price: product.price,
         qty: product.quantity,
         id_category: 1, // Tentukan kategori jika diperlukan
       }));
 
     const transactionData = {
-      no_meja: "1", // Gantilah dengan nomor meja yang sesuai
-      id_kasir: "Kasir1", // Gantilah dengan ID kasir yang sesuai
+      no_meja: idMeja, // Ambil dari input pengguna
       id_payment_method: 1, // ID metode pembayaran (misalnya 1 untuk tunai)
       total_pembelian: total,
       nominal_pembeyaran: tunai,
@@ -150,11 +157,10 @@ const ProductListPage: React.FC = () => {
             placeholder="Search..."
             className="bg-[#1E1E1E] h-[40px] p-3 rounded-full text-sm text-white outline-white focus:ring-2 focus:ring-[#005A80] w-1/2"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)} // Menangani perubahan input pencarian
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
         </header>
 
-        {/* Product List */}
         <div className="space-y-4">
           {filteredProducts.length === 0 ? (
             <div className="text-center text-gray-400">
@@ -179,69 +185,16 @@ const ProductListPage: React.FC = () => {
       </div>
 
       {/* Tagihan */}
-      <aside className="w-64 bg-[#222222] p-6 fixed top-0 right-0 h-full text-white shadow-xl rounded-lg">
-        <h2 className="text-xl font-semibold mb-6">Tagihan</h2>
-        <ul className="space-y-4">
-          {products
-            .filter((product) => product.quantity > 0)
-            .map((product, index) => (
-              <li key={index} className="flex justify-between text-sm">
-                <span>{product.title}</span>
-                <span>
-                  IDR{" "}
-                  {(
-                    parseInt(String(product.price).replace(/[^0-9]/g, "")) *
-                    product.quantity
-                  ).toLocaleString()}
-                </span>
-              </li>
-            ))}
-        </ul>
-
-        {/* Garis Pemisah antara Total dan Produk */}
-        <hr className="my-4 border-gray-700" />
-
-        <div className="space-y-4">
-          <div className="flex justify-between text-sm">
-            <span>Total</span>
-            <span>IDR {total.toLocaleString()}</span>
-          </div>
-
-          {/* Input Tunai yang lebih kecil */}
-          <div className="flex justify-between items-center text-sm">
-            <span>Tunai</span>
-            <input
-              type="number"
-              value={tunai}
-              onChange={handleTunaiChange}
-              className="bg-gray-800 p-2 rounded-md text-sm text-gray-300 w-1/2"
-              placeholder="Masukkan Nominal"
-            />
-          </div>
-          <textarea
-            placeholder="Tambahkan Catatan"
-            className="bg-gray-800 w-full mt-4 p-3 rounded-md text-sm text-gray-300 resize-none"
-          ></textarea>
-        </div>
-
-        {/* Garis Pemisah antara Kembalian dan Button Beli */}
-        <hr className="my-4 border-gray-700" />
-
-        {/* Menampilkan Kembalian */}
-        {tunai >= total && (
-          <div className="flex justify-between text-sm font-semibold">
-            <span>Kembalian</span>
-            <span>IDR {kembalian.toLocaleString()}</span>
-          </div>
-        )}
-
-        <button
-          onClick={handleBuy}
-          className="w-full bg-[#005A80] py-2 mt-6 rounded-md text-white font-semibold hover:bg-[#004e70] text-sm"
-        >
-          Beli
-        </button>
-      </aside>
+      <Tagihan
+        idMeja={idMeja}
+        setIdMeja={setIdMeja}
+        products={products}
+        total={total}
+        tunai={tunai}
+        kembalian={kembalian}
+        handleTunaiChange={handleTunaiChange}
+        handleBuy={handleBuy}
+      />
     </div>
   );
 };
