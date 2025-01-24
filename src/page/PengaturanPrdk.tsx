@@ -11,7 +11,7 @@ interface Product {
   category: string;
   stock: number;
   discount?: number;
-  displayOnSidebar?: boolean; // Tambahkan properti ini
+  displayOnSidebar?: boolean;
 }
 
 const ProductSettingsPage: React.FC = () => {
@@ -39,7 +39,7 @@ const ProductSettingsPage: React.FC = () => {
           category: product.category,
           stock: product.stock,
           discount: product.discount || 0,
-          displayOnSidebar: false, // Tambahkan default false
+          displayOnSidebar: false,
         })
       );
 
@@ -55,23 +55,27 @@ const ProductSettingsPage: React.FC = () => {
     fetchProducts();
   }, []);
 
-  // Fungsi edit produk
   const handleEdit = (product: Product) => {
     setEditProduct(product);
   };
 
-  // Fungsi hapus produk
-  const handleDelete = (id: number) => {
-    console.log(`Delete product with ID: ${id}`);
-    // Tambahkan logika hapus produk di sini
+  const handleDelete = async (id: number) => {
+    try {
+      await axios.delete(
+        `https://bg8tgnl0-3001.asse.devtunnels.ms/product/delete/${id}`
+      );
+      setProducts(products.filter((product) => product.id !== id));
+      alert("Produk berhasil dihapus");
+    } catch (error) {
+      console.error("Error deleting product:", error);
+      alert("Terjadi kesalahan saat menghapus produk.");
+    }
   };
 
-  // Fungsi simpan perubahan
   const handleSave = async () => {
-    if (!editProduct) return; // Pastikan ada produk yang sedang diedit
+    if (!editProduct) return;
 
     try {
-      // Kirim request PUT ke server untuk memperbarui data produk
       const response = await axios.put(
         `https://bg8tgnl0-3001.asse.devtunnels.ms/product/update_product_discount/${editProduct.id}`,
         {
@@ -83,7 +87,6 @@ const ProductSettingsPage: React.FC = () => {
 
       console.log("Product updated:", response.data);
 
-      // Update produk di state setelah berhasil disimpan
       setProducts((prevProducts) =>
         prevProducts.map((product) =>
           product.id === editProduct.id
@@ -92,15 +95,13 @@ const ProductSettingsPage: React.FC = () => {
         )
       );
 
-      setEditProduct(null); // Kembali ke tampilan default setelah disimpan
+      setEditProduct(null);
     } catch (error) {
       console.error("Error updating product:", error);
-      // Menangani error jika terjadi masalah saat melakukan request
       alert("Terjadi kesalahan saat memperbarui produk. Silakan coba lagi.");
     }
   };
 
-  // Fungsi batal edit
   const handleCancel = () => {
     setEditProduct(null);
   };
@@ -118,8 +119,8 @@ const ProductSettingsPage: React.FC = () => {
         <button
           onClick={() => navigate(-1)}
           className="p-2 bg-gray-800 rounded-full hover:bg-gray-700 transition"
+          aria-label="Kembali ke halaman sebelumnya"
           title="Kembali"
-          aria-label="Kembali ke halaman produk"
         >
           <FaArrowLeft size={20} />
         </button>
@@ -179,12 +180,14 @@ const ProductSettingsPage: React.FC = () => {
               <button
                 onClick={handleSave}
                 className="bg-green-500 text-white px-4 py-2 rounded"
+                type="button"
               >
                 Simpan
               </button>
               <button
                 onClick={handleCancel}
                 className="bg-red-500 text-white px-4 py-2 rounded"
+                type="button"
               >
                 Batal
               </button>
@@ -214,16 +217,16 @@ const ProductSettingsPage: React.FC = () => {
                 <button
                   onClick={() => handleEdit(product)}
                   className="text-white hover:text-gray-800"
-                  title={`Edit ${product.title}`}
-                  aria-label={`Edit ${product.title}`}
+                  aria-label={`Edit produk ${product.title}`}
+                  title={`Edit produk ${product.title}`}
                 >
                   <FaEdit size={20} />
                 </button>
                 <button
                   onClick={() => handleDelete(product.id)}
                   className="text-white hover:text-red-500"
-                  title={`Hapus ${product.title}`}
-                  aria-label={`Hapus ${product.title}`}
+                  aria-label={`Hapus produk ${product.title}`}
+                  title={`Hapus produk ${product.title}`}
                 >
                   <FaTrash size={20} />
                 </button>
