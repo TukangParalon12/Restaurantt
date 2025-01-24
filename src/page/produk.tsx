@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaCog, FaPlus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import Modal from "../component/tambahproduk";
 
 interface Product {
@@ -20,6 +21,8 @@ const ProductPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [role, setRole] = useState<string | null>(null); // Menyimpan role pengguna
 
+  const navigate = useNavigate(); // Inisialisasi useNavigate
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -29,7 +32,7 @@ const ProductPage: React.FC = () => {
       return;
     }
 
-    // Mendekode token untuk mendapatkan role (misalnya menggunakan jwt-decode)
+    // Mendekode token untuk mendapatkan role
     const decodeToken = () => {
       try {
         const base64Url = token.split(".")[1];
@@ -68,7 +71,7 @@ const ProductPage: React.FC = () => {
         const fetchedProducts = response.data.data.map((product) => ({
           title: product.title,
           stock: product.stock,
-          img_product: `https://bg8tgnl0-3001.asse.devtunnels.ms/${product.img_product}`, // Pastikan base URL benar
+          img_product: `https://bg8tgnl0-3001.asse.devtunnels.ms/${product.img_product}`,
         }));
 
         setProducts(fetchedProducts);
@@ -85,6 +88,10 @@ const ProductPage: React.FC = () => {
     setModalOpen(false);
   };
 
+  const goToSettings = () => {
+    navigate("/pengaturan"); // Navigasi ke halaman pengaturan
+  };
+
   return (
     <div className="h-[100%] text-white p-6 relative">
       <div className="flex justify-center items-center mb-3">
@@ -97,6 +104,7 @@ const ProductPage: React.FC = () => {
           <button
             className="p-2 bg-gray-800 rounded-full hover:bg-gray-700 transition"
             title="Pengaturan"
+            onClick={goToSettings} // Panggil fungsi navigasi
           >
             <FaCog size={20} />
           </button>
@@ -121,10 +129,10 @@ const ProductPage: React.FC = () => {
               <img
                 src={product.img_product}
                 alt={product.title}
-                className="w-full h-48 object-cover mb-4 rounded-md" // Increased image size
+                className="w-full h-48 object-cover mb-4 rounded-md"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src =
-                    "https://via.placeholder.com/150"; // Gambar fallback jika gagal
+                    "https://via.placeholder.com/150";
                 }}
               />
               <h2 className="text-xl font-semibold mb-1">{product.title}</h2>

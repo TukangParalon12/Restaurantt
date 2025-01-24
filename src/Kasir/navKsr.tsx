@@ -56,9 +56,8 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
               </li>{" "}
               <li className="ml-4">
                 {" "}
-                {/* Menambahkan margin left untuk indentasi */}
                 <a
-                  href="#"
+                  href="/kasir/histori"
                   className="flex items-center space-x-2 py-1.5 px-2 rounded hover:bg-gray-700 transition w-8 h-8"
                 >
                   <img src={trs} alt="" />

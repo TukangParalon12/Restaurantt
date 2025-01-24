@@ -9,6 +9,8 @@ import ProdukPage from "./page/produk";
 import Gudang from "./Gudang/dashboardGdg";
 import NavbarGdg from "./Gudang/navGdg";
 import MdKsr from "./page/ModeKsr";
+import HistoryPage from "./page/History";
+import Pengaturan from "./page/PengaturanPrdk";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +38,10 @@ export const router = createBrowserRouter([
         path: "produk",
         element: <ProdukPage />,
       },
+      {
+        path: "histori",
+        element: <HistoryPage />,
+      },
     ],
   },
 
@@ -58,6 +64,10 @@ export const router = createBrowserRouter([
       {
         path: "produk",
         element: <ProdukPage />,
+      },
+      {
+        path: "histori",
+        element: <HistoryPage />,
       },
     ],
   },
@@ -83,5 +93,9 @@ export const router = createBrowserRouter([
   {
     path: "/modekasir",
     element: <MdKsr />,
+  },
+  {
+    path: "/pengaturan",
+    element: <Pengaturan />,
   },
 ]);

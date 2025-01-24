@@ -100,7 +100,7 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/owner/histori"
                   className="flex items-center space-x-2 py-1.5 px-2 rounded hover:bg-gray-700 transition"
                 >
                   <img src={trs} alt="" />
