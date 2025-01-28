@@ -76,9 +76,11 @@ const ProductSettingsPage: React.FC = () => {
     if (!editProduct) return;
 
     try {
+      // Pastikan ID produk terkirim dengan benar
       const response = await axios.put(
         `https://bg8tgnl0-3001.asse.devtunnels.ms/product/update_product_discount/${editProduct.id}`,
         {
+          id: editProduct.id,
           price: editProduct.price,
           discount: editProduct.discount,
           displayOnSidebar: editProduct.displayOnSidebar,
