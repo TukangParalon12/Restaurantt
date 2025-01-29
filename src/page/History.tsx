@@ -22,7 +22,7 @@ interface BackendResponse {
   id_payment_method: string;
   details: {
     product: string;
-    prince: string;
+    price: string;
     qty: number;
     level?: number;
   }[];
@@ -56,7 +56,7 @@ const HistoryPage: React.FC = () => {
           paymentMethod: item.id_payment_method,
           products: item.details.map((product) => ({
             title: product.product,
-            price: `IDR ${parseInt(product.prince).toLocaleString()}`,
+            price: `IDR ${parseInt(product.price).toLocaleString()}`,
             quantity: product.qty,
             level: product.level || 0,
           })),
