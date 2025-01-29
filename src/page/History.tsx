@@ -33,16 +33,25 @@ const HistoryPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fungsi untuk mengambil data dari backend
   const fetchHistory = async () => {
     try {
+      setLoading(true);
+      setError(null);
+
+      const token = localStorage.getItem("authToken");
+      console.log("Token yang digunakan:", token);
+
       const response = await axios.get<{ data: BackendResponse[] }>(
-        "https://bg8tgnl0-3001.asse.devtunnels.ms/history" // Ganti URL sesuai endpoint backend
+        "https://bg8tgnl0-3001.asse.devtunnels.ms/transaksi/history",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
       );
 
-      // Transformasi data dari response backend ke struktur yang sesuai
-      const transformedData: HistoryItem[] = response.data.data.map(
-        (item: BackendResponse) => ({
+      console.log("Response API:", response);
+
+      setHistoryData(
+        response.data.data.map((item) => ({
           id: item.id,
           paymentMethod: item.id_payment_method,
           products: item.details.map((product) => ({
@@ -51,13 +60,24 @@ const HistoryPage: React.FC = () => {
             quantity: product.qty,
             level: product.level || 0,
           })),
-        })
+        }))
       );
-
-      setHistoryData(transformedData);
     } catch (err) {
       console.error("Error fetching history:", err);
-      setError("Terjadi kesalahan saat mengambil data histori.");
+
+      if (axios.isAxiosError(err)) {
+        console.error("Axios error detail:", err.response);
+
+        if (err.response?.status === 500) {
+          setError("Terjadi kesalahan di server. Coba lagi nanti.");
+        } else {
+          setError(
+            err.response?.data?.message || `Error: ${err.response?.status}`
+          );
+        }
+      } else {
+        setError("Gagal mengambil data transaksi.");
+      }
     } finally {
       setLoading(false);
     }
@@ -80,9 +100,9 @@ const HistoryPage: React.FC = () => {
       <h1 className="text-xl font-bold mb-6">Riwayat Transaksi</h1>
       <div className="space-y-6">
         {historyData.length === 0 ? (
-          <div className="text-center text-gray-400">
-            Tidak ada data histori transaksi.
-          </div>
+          <p className="text-center text-gray-400 text-lg">
+            Belum ada transaksi penjualan.
+          </p>
         ) : (
           historyData.map((history) => (
             <div
