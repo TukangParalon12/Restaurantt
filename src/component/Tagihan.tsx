@@ -35,6 +35,7 @@ const Tagihan: React.FC<TagihanProps> = ({
       try {
         const token = localStorage.getItem("authToken");
         console.log("Token dari localStorage:", token);
+
         if (!token) {
           setError("Token tidak ditemukan. Silakan login kembali.");
           setLoading(false);
@@ -47,25 +48,18 @@ const Tagihan: React.FC<TagihanProps> = ({
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        console.log("Respons API Lengkap:", response);
 
-        if (response.data?.id && response.data?.name) {
-          setKasir(response.data);
+        console.log("Respons API Lengkap:", response.data); // Debugging
+
+        // Perbaiki akses ke data
+        if (response.data?.data?.id && response.data?.data?.name) {
+          setKasir(response.data.data); // Ambil data yang benar
         } else {
           setError("Data kasir tidak valid.");
         }
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error("Axios Error:", error.response);
-          setError(
-            error.response?.data?.message ||
-              `Error ${error.response?.status || "tidak diketahui"}`
-          );
-          console.error("Detail Error:", error);
-        } else {
-          console.error("Unexpected Error:", error);
-          setError("Gagal mengambil data kasir. Silakan coba lagi.");
-        }
+        console.error("Error fetching kasir:", error);
+        setError("Gagal mengambil data kasir. Silakan coba lagi.");
       } finally {
         setLoading(false);
       }

@@ -123,7 +123,8 @@ const ProductListPage: React.FC = () => {
     };
 
     try {
-      const token = localStorage.getItem("authToken");
+      const token = localStorage.getItem("token");
+      console.log("cek token", token);
       if (!token) {
         alert("Token tidak ditemukan, silakan login kembali.");
         return;

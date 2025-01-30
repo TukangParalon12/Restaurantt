@@ -19,7 +19,6 @@ const ProdukMdKsr: React.FC<ProdukMdKsrProps> = ({
   img_product,
   onIncrease,
   onDecrease,
-  onAddToCart,
 }) => {
   return (
     <div className="flex items-center bg-[#00BFFF] text-black p-4 rounded-md shadow-md">
@@ -64,13 +63,6 @@ const ProdukMdKsr: React.FC<ProdukMdKsrProps> = ({
             +
           </button>
         </div>
-        <button
-          className="px-3 py-1 bg-[#067487] text-white rounded-md font-semibold text-xs"
-          aria-label="Tambahkan ke keranjang"
-          onClick={onAddToCart}
-        >
-          Keranjang
-        </button>
       </div>
     </div>
   );

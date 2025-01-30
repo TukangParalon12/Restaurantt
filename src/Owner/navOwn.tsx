@@ -57,7 +57,7 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/owner/dataKaryawan"
                   className="flex items-center space-x-2 py-1.5 px-2 rounded hover:bg-gray-700 transition"
                 >
                   <img src={kar} alt="" />
@@ -127,7 +127,7 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
       <div className="flex-1 flex flex-col ml-48">
         {/* Header */}
         <header className="fixed top-0 left-48 right-0 bg-[#111315] p-3 flex justify-between items-center z-50">
-          <h2 className="ml-[950px] text-md">Today: 18-04-2024</h2>
+          <h2 className="ml-[800px] text-md">Today: 18-04-2024</h2>
           <div className="p-1 rounded-full cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
