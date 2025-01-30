@@ -3,7 +3,7 @@ import axios from "axios";
 
 interface Product {
   title: string;
-  price: string; // Anda bisa mengubah ini menjadi number jika ingin memudahkan perhitungan
+  price: string;
   quantity: number;
 }
 

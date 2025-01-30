@@ -3,16 +3,16 @@ import axios from "axios";
 
 // Tipe untuk produk
 interface Product {
-  title: string; // Nama Produk
-  price: string; // Harga Produk
-  quantity: number; // Jumlah Produk
-  level: number; // Level Produk (jika ada)
+  title: string;
+  price: string;
+  quantity: number;
+  level: number;
 }
 
 // Tipe untuk setiap item dalam histori transaksi
 interface HistoryItem {
-  id: string; // ID Transaksi
-  paymentMethod: string; // Metode Pembayaran
+  id: string;
+  paymentMethod: string;
   products: Product[];
 }
 

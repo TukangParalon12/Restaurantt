@@ -84,7 +84,7 @@ const NavbarKsr: React.FC<NavbarKsrProps> = ({ children }) => {
       <div className="flex-1 flex flex-col ml-48">
         {/* Header */}
         <header className="bg-[#111315] p-3 flex justify-between items-center fixed top-0 left-48 right-0 z-50">
-          <h2 className="ml-[950px] text-md ">Today: 18-04-2024</h2>
+          <h2 className="ml-[800px] text-md ">Today: 18-04-2024</h2>
           <div className="p-1 rounded-full cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"

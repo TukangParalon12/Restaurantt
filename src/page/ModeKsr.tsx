@@ -102,34 +102,53 @@ const ProductListPage: React.FC = () => {
       alert("Uang tunai tidak cukup.");
       return;
     }
+
+    // Pastikan price dikirim sebagai angka
     const details = products
       .filter((product) => product.quantity > 0)
       .map((product) => ({
         product: product.title,
-        price: product.price,
+        price: parseInt(product.price.replace(/[^0-9]/g, ""), 10), // Konversi price ke number
         qty: product.quantity,
-        id_category: 1, // Tentukan kategori jika diperlukan
+        id_category: 1,
       }));
 
     const transactionData = {
-      no_meja: idMeja, // Ambil dari input pengguna
+      no_meja: idMeja,
       id_payment_method: 1, // ID metode pembayaran (misalnya 1 untuk tunai)
       total_pembelian: total,
-      nominal_pembeyaran: tunai,
-      nominal_pengembalian: kembalian,
+      nominal_pembayaran: tunai,
+      nominal_pengembalian: kembalian, // Gunakan state kembalian langsung
       details,
     };
 
     try {
+      const token = localStorage.getItem("authToken");
+      if (!token) {
+        alert("Token tidak ditemukan, silakan login kembali.");
+        return;
+      }
+
       const response = await axios.post(
         "https://bg8tgnl0-3001.asse.devtunnels.ms/transaksi",
-        transactionData
+        transactionData,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
       );
+
       console.log("Transaction created successfully:", response.data);
       alert("Transaksi berhasil!");
     } catch (error) {
-      console.error("Failed to create transaction:", error);
-      alert("Transaksi gagal.");
+      if (axios.isAxiosError(error)) {
+        console.error("Axios Error:", error.response);
+        alert(
+          error.response?.data?.message || "Terjadi kesalahan saat transaksi."
+        );
+      } else {
+        console.error("Unexpected Error:", error);
+        alert("Transaksi gagal. Silakan coba lagi.");
+      }
     }
   };
 
