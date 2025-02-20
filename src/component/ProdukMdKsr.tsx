@@ -5,7 +5,7 @@ export interface ProdukMdKsrProps {
   price: string;
   rating: number;
   quantity: number;
-  img_product: string; // Tambahkan ini
+  img_product: string;
   onIncrease: () => void;
   onDecrease: () => void;
   onAddToCart: () => void;
@@ -30,7 +30,7 @@ const ProdukMdKsr: React.FC<ProdukMdKsrProps> = ({
           className="w-full h-full object-cover"
           onError={(e) => {
             (e.target as HTMLImageElement).src =
-              "https://via.placeholder.com/150"; // Fallback jika gambar gagal dimuat
+              "https://via.placeholder.com/150";
           }}
         />
       </div>

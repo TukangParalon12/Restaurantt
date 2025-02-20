@@ -1,38 +1,38 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { FaCog, FaPlus } from "react-icons/fa";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { FaPlus } from "react-icons/fa";
 import Modal from "../component/tambahproduk";
+import PengaturanPrdk from "../component/PengaturanPrdk";
 
 interface Product {
+  id: number;
   title: string;
   stock: number;
+  price?: number;
+  discount?: number;
   img_product: string;
 }
 
-interface ApiResponse {
-  data: Product[];
-}
-
 const ProductPage: React.FC = () => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [products, setProducts] = useState<Product[]>([]);
+  const [isProductModalOpen, setProductModalOpen] = useState<boolean>(false);
+  const [selectedProductId, setSelectedProductId] = useState<number | null>(
+    null
+  );
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [role, setRole] = useState<string | null>(null); // Menyimpan role pengguna
-
-  const navigate = useNavigate(); // Inisialisasi useNavigate
+  const [role, setRole] = useState<string | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      setError("Token not found. Please login.");
+      setError("Token tidak ditemukan. Silakan login.");
       setLoading(false);
       return;
     }
 
-    // Mendekode token untuk mendapatkan role
     const decodeToken = () => {
       try {
         const base64Url = token.split(".")[1];
@@ -45,19 +45,19 @@ const ProductPage: React.FC = () => {
         );
         return JSON.parse(jsonPayload);
       } catch (e) {
-        console.error("Failed to decode token:", e);
+        console.error("Gagal mendekode token:", e);
         return null;
       }
     };
 
     const decoded = decodeToken();
     if (decoded && decoded.role) {
-      setRole(decoded.role); // Mengambil role dari token
+      setRole(decoded.role);
     }
 
     axios
-      .get<ApiResponse>(
-        "https://bg8tgnl0-3001.asse.devtunnels.ms/product/show_product",
+      .get<{ data: Product[] }>(
+        "https://nrmlm6dh-3001.asse.devtunnels.ms/product/show_product",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -65,31 +65,85 @@ const ProductPage: React.FC = () => {
         }
       )
       .then((response) => {
-        console.log("Respons dari API:", response.data);
+        console.log("Respons API:", response.data);
 
-        // Mapping the API response to match the Product type
-        const fetchedProducts = response.data.data.map((product) => ({
-          title: product.title,
-          stock: product.stock,
-          img_product: `https://bg8tgnl0-3001.asse.devtunnels.ms/${product.img_product}`,
-        }));
+        if (!response.data || !response.data.data) {
+          console.error("Format respons API tidak sesuai:", response.data);
+          setError("Format data dari server tidak sesuai.");
+          return;
+        }
+
+        const fetchedProducts = response.data.data.map((product) => {
+          if (!product.id) {
+            console.error("Produk tanpa ID ditemukan:", product);
+          }
+          return {
+            id: product.id,
+            title: product.title,
+            stock: product.stock,
+            price: product.price,
+            discount: product.discount,
+            img_product: `https://nrmlm6dh-3001.asse.devtunnels.ms/${product.img_product}`,
+          };
+        });
 
         setProducts(fetchedProducts);
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching products:", error);
-        setError("Failed to fetch product data.");
+        console.error("Gagal mengambil data produk:", error);
+        setError("Gagal mengambil data produk.");
         setLoading(false);
       });
   }, []);
 
-  const handleModalClose = () => {
-    setModalOpen(false);
+  // Fungsi untuk mengambil detail produk berdasarkan ID
+  const fetchProductById = async (productId: number) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.error("Token tidak ditemukan. Silakan login.");
+        return null;
+      }
+
+      const response = await axios.get(
+        `https://nrmlm6dh-3001.asse.devtunnels.ms/product/cek_product/${productId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.data && response.data.data) {
+        console.log("Produk ditemukan:", response.data.data);
+        return response.data.data; // Mengembalikan satu produk
+      } else {
+        console.error("Produk tidak ditemukan:", response.data);
+        return null;
+      }
+    } catch (error) {
+      console.error("Gagal mengambil data produk:", error);
+      return null;
+    }
   };
 
-  const goToSettings = () => {
-    navigate("/pengaturan"); // Navigasi ke halaman pengaturan
+  const handleProductClick = async (productId: number | undefined) => {
+    if (!productId) {
+      console.error("ID Produk tidak valid:", productId);
+      return;
+    }
+
+    console.log("Mengambil data produk dengan ID:", productId);
+
+    const productData = await fetchProductById(productId);
+    if (!productData) {
+      console.error("Produk tidak ditemukan.");
+      return;
+    }
+
+    setSelectedProductId(productData.id); // Pastikan ID valid sebelum disimpan
+    setProductModalOpen(true);
   };
 
   return (
@@ -98,21 +152,8 @@ const ProductPage: React.FC = () => {
         <h1 className="text-3xl font-bold">Stok Produk</h1>
       </div>
 
-      {/* Tampilkan tombol pengaturan hanya jika role adalah owner/admin */}
-      {role === "owner" || role === "admin" ? (
-        <div className="absolute top-6 right-6">
-          <button
-            className="p-2 bg-gray-800 rounded-full hover:bg-gray-700 transition"
-            title="Pengaturan"
-            onClick={goToSettings} // Panggil fungsi navigasi
-          >
-            <FaCog size={20} />
-          </button>
-        </div>
-      ) : null}
-
       {loading ? (
-        <div className="text-center text-gray-400">Loading ...</div>
+        <div className="text-center text-gray-400">Memuat...</div>
       ) : error ? (
         <div className="text-center text-red-500">{error}</div>
       ) : products.length === 0 ? (
@@ -121,19 +162,16 @@ const ProductPage: React.FC = () => {
         </div>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
-          {products.map((product, index) => (
+          {products.map((product) => (
             <div
-              key={index}
-              className="rounded-lg overflow-hidden text-center p-4"
+              key={product.id}
+              className="rounded-lg overflow-hidden text-center p-4 cursor-pointer"
+              onClick={() => handleProductClick(product.id)}
             >
               <img
                 src={product.img_product}
                 alt={product.title}
                 className="w-full h-48 object-cover mb-4 rounded-md"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src =
-                    "https://via.placeholder.com/150";
-                }}
               />
               <h2 className="text-xl font-semibold mb-1">{product.title}</h2>
               <p className="text-gray-400 text-md">Stock: {product.stock}</p>
@@ -142,18 +180,21 @@ const ProductPage: React.FC = () => {
         </div>
       )}
 
-      {/* Tampilkan tombol tambah produk hanya jika role adalah owner/admin */}
       {role === "owner" || role === "admin" ? (
         <button
-          className="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-400 text-white p-4 rounded-full shadow-lg transition"
-          title="Tambah Produk"
+          className="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-400 text-white p-4 rounded-full shadow-lg"
           onClick={() => setModalOpen(true)}
         >
           <FaPlus size={24} />
         </button>
       ) : null}
 
-      <Modal isOpen={isModalOpen} onClose={handleModalClose} />
+      <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
+      <PengaturanPrdk
+        isOpen={isProductModalOpen}
+        onClose={() => setProductModalOpen(false)}
+        productId={selectedProductId}
+      />
     </div>
   );
 };

@@ -18,7 +18,7 @@ const EmployeeList: React.FC = () => {
     const fetchEmployees = async () => {
       try {
         const response = await axios.get<{ data: Employee[] }>(
-          "https://bg8tgnl0-3001.asse.devtunnels.ms/users/show_data_karyawan"
+          "https://nrmlm6dh-3001.asse.devtunnels.ms/users/show_data_karyawan"
         );
 
         // Pastikan data sesuai dengan Employee

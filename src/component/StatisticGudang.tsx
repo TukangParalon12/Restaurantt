@@ -22,7 +22,7 @@ const StatisticGudang: React.FC<StatisticGudangProps> = ({ stats }) => {
   useEffect(() => {
     // Ambil data total pemasukan dari API
     axios
-      .get("https://bg8tgnl0-3001.asse.devtunnels.ms/transaksi/data_pendapatan")
+      .get("https://nrmlm6dh-3001.asse.devtunnels.ms/transaksi/data_pendapatan")
       .then((response) => {
         const data = response.data;
 

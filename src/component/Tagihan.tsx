@@ -43,7 +43,7 @@ const Tagihan: React.FC<TagihanProps> = ({
         }
 
         const response = await axios.get(
-          "https://bg8tgnl0-3001.asse.devtunnels.ms/users/show_data",
+          "https://nrmlm6dh-3001.asse.devtunnels.ms/users/show_data",
           {
             headers: { Authorization: `Bearer ${token}` },
           }

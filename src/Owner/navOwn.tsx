@@ -4,7 +4,6 @@ import dsh from "../assets/dashboard.png";
 import sup from "../assets/supplier.png";
 import pdk from "../assets/produk.png";
 import kar from "../assets/karyawan.png";
-import trs from "../assets/transaksi.png";
 import prl from "../assets/profile.png";
 
 interface NavbarOwnProps {
@@ -26,7 +25,6 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
         <nav className="space-y-8">
           {/* Menu Section */}
           <div className="mb-4">
-            <h3 className="text-sm font-semibold uppercase mb-2">Menu</h3>
             <ul className="space-y-2">
               <li>
                 <a
@@ -69,15 +67,14 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
 
           {/* Transaksi Section */}
           <div className="mb-4">
-            <h3 className="text-sm font-semibold uppercase mb-2">Transaksi</h3>
             <ul className="space-y-2">
               <li>
                 <a
                   href="#"
                   className="flex items-center space-x-2 py-1.5 px-2 rounded hover:bg-gray-700 transition"
                 >
-                  <img src={trs} alt="" />
-                  <span>Barang Masuk</span>
+                  <img alt="" />
+                  <span>Stok In</span>
                 </a>
               </li>
               <li>
@@ -85,8 +82,8 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
                   href="#"
                   className="flex items-center space-x-2 py-1.5 px-2 rounded hover:bg-gray-700 transition"
                 >
-                  <img src={trs} alt="" />
-                  <span>Barang Keluar</span>
+                  <img alt="" />
+                  <span>Stok Out</span>
                 </a>
               </li>
               <li>
@@ -94,8 +91,8 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
                   href="#"
                   className="flex items-center space-x-2 py-1.5 px-2 rounded hover:bg-gray-700 transition"
                 >
-                  <img src={trs} alt="" />
-                  <span>Jenis Produk</span>
+                  <img alt="" />
+                  <span>Master Produk</span>
                 </a>
               </li>
               <li>
@@ -103,7 +100,7 @@ const NavbarOwn: React.FC<NavbarOwnProps> = ({ children }) => {
                   href="/owner/histori"
                   className="flex items-center space-x-2 py-1.5 px-2 rounded hover:bg-gray-700 transition"
                 >
-                  <img src={trs} alt="" />
+                  <img alt="" />
                   <span>Histori</span>
                 </a>
               </li>

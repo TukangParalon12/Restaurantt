@@ -30,14 +30,14 @@ const ProductListPage: React.FC = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "https://bg8tgnl0-3001.asse.devtunnels.ms/product/show_product"
+          "https://nrmlm6dh-3001.asse.devtunnels.ms/product/show_product"
         );
 
         const fetchedProducts = response.data.data.map(
           (product: APIProduct) => ({
             title: product.title,
             price: product.price.toString(), // Konversi price menjadi string
-            img_product: `https://bg8tgnl0-3001.asse.devtunnels.ms/${product.img_product}`,
+            img_product: `https://nrmlm6dh-3001.asse.devtunnels.ms/${product.img_product}`,
             rating: 5, // Default rating jika tidak ada
             quantity: 0, // Default quantity
           })
@@ -131,7 +131,7 @@ const ProductListPage: React.FC = () => {
       }
 
       const response = await axios.post(
-        "https://bg8tgnl0-3001.asse.devtunnels.ms/transaksi",
+        "https://nrmlm6dh-3001.asse.devtunnels.ms/transaksi",
         transactionData,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -171,7 +171,7 @@ const ProductListPage: React.FC = () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col ml-16 mr-64 p-4">
         <header className="mb-6 flex items-center justify-between">
-          <h1 className="text-2xl font-semibold">Menu List</h1>
+          <h1 className="text-2xl font-semibold">Daftar Menu</h1>
           <input
             type="text"
             placeholder="Search..."

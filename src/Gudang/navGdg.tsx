@@ -67,7 +67,7 @@ const NavbarGdg: React.FC<NavbarGdgProps> = ({ children }) => {
                   className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
                   <img src={trs} alt="" />
-                  <span>Barang Masuk</span>
+                  <span>Stok In</span>
                 </a>
               </li>
               <li>
@@ -76,7 +76,7 @@ const NavbarGdg: React.FC<NavbarGdgProps> = ({ children }) => {
                   className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
                   <img src={trs} alt="" />
-                  <span>Barang Keluar</span>
+                  <span>Stok Out</span>
                 </a>
               </li>
               <li>
@@ -85,7 +85,7 @@ const NavbarGdg: React.FC<NavbarGdgProps> = ({ children }) => {
                   className="flex items-center space-x-2 py-1 px-3 rounded hover:bg-gray-700 transition"
                 >
                   <img src={trs} alt="" />
-                  <span>Jenis Produk</span>
+                  <span>Master Produk</span>
                 </a>
               </li>
             </ul>

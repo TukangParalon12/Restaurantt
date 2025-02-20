@@ -19,7 +19,7 @@ const ProfilePage: React.FC = () => {
       return;
     }
     axios
-      .get("https://bg8tgnl0-3001.asse.devtunnels.ms/users/show_data", {
+      .get("https://nrmlm6dh-3001.asse.devtunnels.ms/users/show_data", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -84,7 +84,7 @@ const ProfilePage: React.FC = () => {
           }}
           className="px-6 py-2 text-black font-bold bg-gray-300 rounded-lg hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
         >
-          Keluar
+          Log Out
         </button>
       </div>
     </div>

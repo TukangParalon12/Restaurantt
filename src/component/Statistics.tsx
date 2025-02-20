@@ -16,42 +16,40 @@ interface StatisticsSectionProps {
 
 const StatisticsSection: React.FC<StatisticsSectionProps> = ({ stats }) => {
   const [totalPemasukan, setTotalPemasukan] = useState("Loading...");
-  const [trend, setTrend] = useState("0%");
+  const [trend, setTrend] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Ambil data total pemasukan dari API
     const fetchTotalPemasukan = async () => {
       try {
         const response = await axios.get(
-          "https://bg8tgnl0-3001.asse.devtunnels.ms/transaksi/data_pendapatan"
+          "https://nrmlm6dh-3001.asse.devtunnels.ms/transaksi/data_pendapatan"
         );
         const data = response.data;
+        console.log("Cek API Response:", data);
 
-        // Validasi dan atur nilai data
-        if (data && typeof data.total_pendapatan === "number") {
-          setTotalPemasukan(
-            `IDR ${data.total_pendapatan.toLocaleString() || 0}`
-          );
-          setTrend(data.trend || "0%");
-          setError(null); // Reset error jika berhasil
+        // Pastikan data memiliki struktur yang diharapkan
+        if (data && typeof data.totalPendapatan === "number") {
+          setTotalPemasukan(`IDR ${data.totalPendapatan.toLocaleString()}`);
+          setTrend(data.trend ? `${data.trend}%` : "");
+          setError(null);
         } else {
           console.warn("Data tidak valid atau kosong.");
           setTotalPemasukan("IDR 0");
-          setTrend("0%");
+          setTrend("");
         }
       } catch (error) {
         console.error("Error fetching total pemasukan:", error);
         setError("Gagal memuat data pendapatan. Silakan coba lagi nanti.");
         setTotalPemasukan("IDR 0");
-        setTrend("0%");
+        setTrend("");
       }
     };
 
     fetchTotalPemasukan();
   }, []);
 
-  // Ganti nilai stat untuk Total Pemasukan
+  // Perbarui statistik dengan data terbaru
   const updatedStats = stats.map((stat) =>
     stat.label === "Total Pemasukan"
       ? { ...stat, value: totalPemasukan, trend: trend }
@@ -80,14 +78,14 @@ const StatisticsSection: React.FC<StatisticsSectionProps> = ({ stats }) => {
 
           {/* Subtext and Trend */}
           <div className="flex justify-between items-center w-full mt-2">
-            <p className="text-gray-400 text-xs">minggu terakhir</p>
+            <p className="text-gray-400 text-xs">Minggu terakhir</p>
             <div className="flex items-center space-x-1">
               <p className="text-sm font-semibold text-white">{stat.trend}</p>
               {/* Ikon panah */}
               <img
-                src={stat.trend.startsWith("+") ? upArrow : downArrow}
+                src={stat.trend.startsWith("-") ? downArrow : upArrow}
                 alt={
-                  stat.trend.startsWith("+") ? "Upward Trend" : "Downward Trend"
+                  stat.trend.startsWith("-") ? "Downward Trend" : "Upward Trend"
                 }
                 className="w-4 h-4"
               />

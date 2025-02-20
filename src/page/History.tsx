@@ -42,7 +42,7 @@ const HistoryPage: React.FC = () => {
       console.log("Token yang digunakan:", token);
 
       const response = await axios.get<{ data: BackendResponse[] }>(
-        "https://bg8tgnl0-3001.asse.devtunnels.ms/transaksi/history",
+        "https://nrmlm6dh-3001.asse.devtunnels.ms/transaksi/history",
         {
           headers: { Authorization: `Bearer ${token}` },
         }

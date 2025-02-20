@@ -62,7 +62,7 @@ const TambahProduk: React.FC<TambahProdukProps> = ({ isOpen, onClose }) => {
       setError(null);
 
       const response = await axios.post(
-        "https://bg8tgnl0-3001.asse.devtunnels.ms/product/add_product",
+        "https://nrmlm6dh-3001.asse.devtunnels.ms/product/add_product",
         formData,
         {
           headers: {

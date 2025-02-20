@@ -10,7 +10,6 @@ import Gudang from "./Gudang/dashboardGdg";
 import NavbarGdg from "./Gudang/navGdg";
 import MdKsr from "./page/ModeKsr";
 import HistoryPage from "./page/History";
-import Pengaturan from "./page/PengaturanPrdk";
 import Karyawan from "./page/DataKaryawan";
 
 export const router = createBrowserRouter([
@@ -98,9 +97,5 @@ export const router = createBrowserRouter([
   {
     path: "/modekasir",
     element: <MdKsr />,
-  },
-  {
-    path: "/pengaturan",
-    element: <Pengaturan />,
   },
 ]);
